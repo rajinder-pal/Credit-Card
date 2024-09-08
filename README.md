@@ -1,60 +1,84 @@
-Credit Card Fraud Prediction
-This project focuses on building a classification model to predict fraudulent credit card transactions using machine learning techniques.
+Model Documentation
+Project Title: Credit Card Fraud Detection
 
-Project Overview
+Objective:
+The goal of this project is to detect fraudulent credit card transactions from a dataset of real transactions. Using the trained model, we aim to identify patterns that differentiate between genuine and fraudulent activities.
 
-Problem Statement: Identify fraudulent transactions in a dataset of credit card purchases made by European cardholders in September 2013.
-Data: The highly imbalanced dataset (0.172% fraud cases) contains 284,807 transactions with labeled fraudulent and legitimate transactions.
-Objectives:
-Analyze, clean, and pre-process the data.
-Handle data imbalance using appropriate methods.
-Engineer new features or transform existing ones for improved model performance.
-Select, train, and validate a machine learning model for fraud prediction.
-Evaluate the model's accuracy and generalization capability.
-Tasks/Activities List
+1. Dataset Overview:
+Dataset: creditcard.csv
+Size: The dataset contains 284,807 transactions, out of which 492 are labeled as fraudulent.
+Features: There are 30 features in total, including Time, Amount, and anonymized features (V1 to V28) obtained using PCA.
 
-Data Collection
+Class Distribution:
+0: Legitimate transactions (majority class)
+1: Fraudulent transactions (minority class)
 
-Download the credit card transaction data from the provided CSV file (creditcard.csv).
-Exploratory Data Analysis (EDA)
 
-Perform data quality checks to identify missing values, outliers, and data types.
-Analyze descriptive statistics and create visualizations to understand patterns and relationships within the data.
-Clean and pre-process the data by handling missing values, outliers, and ensuring consistent data types.
-Data Balancing
+2. Pre-processing:
+Handling Imbalanced Data: The dataset has a highly imbalanced class distribution, with fraudulent transactions making up only about 0.17% of the total data.
+Normalization:
+The features Time and Amount were standardized using StandardScaler to ensure that all features contribute equally to the model.
+Data Splitting:
+The dataset was split into 70% training and 30% testing using train_test_split from sklearn.
 
-Address the data imbalance due to a significantly lower number of fraudulent transactions. Apply appropriate techniques like oversampling, undersampling, or SMOTE to balance the dataset.
-Feature Engineering and Selection
 
-Create new features based on domain knowledge or feature engineering techniques.
-Analyze feature importance and select the most relevant features for model training.
-Model Selection, Training, and Evaluation
+3. Model Selection:
+Model Used: RandomForestClassifier
+Rationale: Random forests were chosen for their ability to handle both large datasets and imbalanced data, as well as their robustness against overfitting.
 
-Choose a suitable classification algorithm (e.g., Random Forest, Gradient Boosting, Support Vector Machines) based on the data characteristics.
-Split the data into training and testing sets.
-Train the model on the training data.
-Validate the model's performance on the unseen testing data using metrics like accuracy, precision, recall, F1-score, and AUC-ROC.
-Hyperparameter Tuning
 
-Implement hyperparameter tuning techniques (e.g., GridSearchCV, RandomizedSearchCV) to optimize the model's performance.
-Model Deployment Plan (Optional)
+4. Model Training:
+Feature Engineering: No additional feature engineering was performed as the features were already anonymized.
+Model Training:
+The model was trained using RandomForestClassifier on the training set.
+Hyperparameters were left at their default values, but future tuning could improve accuracy.
 
-Outline a strategy for deploying the trained model into a production environment for real-world fraud detection.
-Expected Deliverables
 
-A report (PDF) detailing:
-Design choices, performance evaluation, and hyperparameter tuning strategies.
-Discussion of potential improvements and future work.
-The source code used to create the fraud detection pipeline.
-Success Metrics
+5. Evaluation:
+Metrics Used:
 
-Model accuracy on the testing data exceeding 75% (subjective measure).
-Implementation of hyperparameter tuning methods.
-Rigorous model validation.
-Bonus Points
+Accuracy
+Precision
+Recall
+F1 Score
+Confusion Matrix
+Accuracy on Test Set: (You can update this based on your results, e.g., 99.95%)
 
-Package the solution in a zip file with a README that explains installation and execution.
-Demonstrate documentation skills by describing how the project benefits the company (e.g., improved fraud detection accuracy reduces financial losses).
-Data Access
 
-The dataset (creditcard.csv) can be accessed through the provided link.
+6. Installation Guide: To set up the project locally, follow these steps:
+
+* Clone the repository or unzip the project.
+
+* Navigate to the project directory and install the required dependencies:
+
+
+Copy code
+pip install -r requirements.txt
+Ensure Python 3.x is installed on your machine.
+
+Install required Python libraries:
+
+bash
+Copy code
+pip install Flask
+pip install pandas
+pip install scikit-learn
+pip install numpy
+pip install matplotlib
+pip install seaborn
+
+
+7. How to Run the Application:
+
+In the terminal or command prompt, navigate to the project directory.
+
+Run the Flask application using the command:
+
+bash
+Copy code
+python app.py
+Once the app is running, open a web browser and visit http://127.0.0.1:5000/ to interact with the model.
+
+8. Limitations:
+Class Imbalance: The dataset is highly imbalanced. Even with a high accuracy score, the model might have a higher false negative rate, which could be problematic for detecting fraudulent cases.
+Overfitting Risk: Since RandomForest can be prone to overfitting, the model may need hyperparameter tuning to generalize better.
